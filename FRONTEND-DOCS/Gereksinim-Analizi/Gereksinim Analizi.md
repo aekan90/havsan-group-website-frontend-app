@@ -1,1407 +1,249 @@
-# 🎨 FRONTEND DEVELOPMENT ROADMAP
-
-> **🎯 AMAÇ:** Hızlı ve etkili frontend geliştirme - AI destekli, müşteriye gösterilebilir prototip.  
-> **SÜRE:** 1-2 hafta  
-> **ARAÇLAR:** VS Code + GitHub Copilot, Next.js 14, Tailwind CSS, Framer Motion
-
-**Proje:** [COMPANY_NAME] - Frontend Geliştirme  
-**Teknoloji:** Next.js 14+ (App Router), TypeScript, Tailwind CSS 3.4+, Framer Motion 11.11+  
-**Backend:** Henüz yok - Mock/Static verilerle çalış  
-**Hedef:** Müşteriye gösterilebilir, responsive, animasyonlu frontend  
-**Versiyon:** 1.0 (Frontend-Only)  
-**Son Güncelleme:** 29.11.2025
-
----
-
-## 📑 İÇINDEKİLER
-
-1. [Faz 0: Proje Hazırlık ve Next.js Kurulumu](#-faz-0-proje-hazirlik-ve-nextjs-kurulumu)
-2. [Faz 1: Design System ve Temel Yapı](#-faz-1-design-system-ve-temel-yapi)
-3. [Faz 2: Global Componentler](#-faz-2-global-componentler)
-4. [Faz 3: Landing Page](#-faz-3-landing-page)
-5. [Faz 4: Modül Sayfaları](#-faz-4-modül-sayfalari)
-6. [Faz 5: Animasyonlar ve Polish](#-faz-5-animasyonlar-ve-polish)
-7. [Faz 6: Responsive ve Accessibility](#-faz-6-responsive-ve-accessibility)
-8. [Faz 7: Mock Data ve Test](#-faz-7-mock-data-ve-test)
-
----
-
-## 🎯 FAZ 0: PROJE HAZIRLIK VE NEXT.JS KURULUMU
-
-> **SÜRE:** 15 dakika  
-> **ÇIKTI:** Çalışan Next.js projesi + Git repository
-
-### 0.1 Boş Proje Klasörü Oluşturma
-
-**Adımlar:**
-
-1. **Windows Explorer'da klasör oluştur:**
-   ```
-   C:\Repos\HAVSAN\[project-name]-frontend-app
-   ```
-   
-   > **💡 İsimlendirme Örneği:**  
-   > `havsan-group-website-frontend-app`
-
-2. **VS Code ile aç:**
-   - VS Code'u aç
-   - `File → Open Folder`
-   - Oluşturduğun boş klasörü seç
-
-3. **VS Code'da Terminal aç:**
-   - `` Ctrl + ` `` (backtick tuşu)
-   - Veya `Terminal → New Terminal`
-
----
-
-### 0.2 Next.js Projesi Kurulumu (Boş Klasörde)
-
-**Terminal'de çalıştır:**
-
-```powershell
-# Next.js kur (mevcut klasörde - nokta işareti önemli!)
-npx create-next-app@latest . --typescript --tailwind --app --no-src-dir
-```
-
-**Sorulacak Sorular ve Cevaplar:**
-- `Which linter would you like to use?` → **ESLint** (Enter)
-- `Would you like to use React Compiler?` → **No** (Enter)
-- `Would you like to customize the import alias?` → **No** (Enter)
-
-> **⚡ Kurulum süresi:** 2-3 dakika
-
----
-
-### 0.3 FRONTEND-DOCS Klasörü ve Müşteri Dökümanlarını Ekleme
-
-**Terminal'de çalıştır:**
-
-```powershell
-# Frontend doküman klasörlerini oluştur
-mkdir FRONTEND-DOCS
-mkdir FRONTEND-DOCS\Gereksinim-Analizi
-mkdir FRONTEND-DOCS\Files
-mkdir FRONTEND-DOCS\Files\Logolar
-mkdir FRONTEND-DOCS\Files\Bilgi-Belge-Gorsel
-```
-
-**Klasör yapısı:**
-```
-FRONTEND-DOCS/
-├── FRONTEND-ROADMAP.md              # Bu dosya (kopyala buraya)
-├── FRONTEND-PRD.md                  # AI ile oluşturulacak (Faz 0.8)
-├── FRONTEND-TASKS.md                # AI ile oluşturulacak (Faz 0.9)
-├── API-CONTRACT.md                  # İleride oluşturulacak
-│
-├── Gereksinim-Analizi/              # İster dökümanları (AI'ya INPUT)
-│   ├── Gereksinim Analizi.pdf       # Müşteriden gelen PDF
-│   ├── Gereksinim Analizi.md        # PDF'den markdown'a çevrilmiş
-│   └── Ek-Notlar.txt                # (Opsiyonel) Email'ler, notlar
-│
-└── Files/                           # Statik dosyalar (Projeye dahil edilecek)
-    ├── Logolar/                     # Company logo, referans logoları
-    │   ├── company-logo.png
-    │   └── company-logo.svg
-    └── Bilgi-Belge-Gorsel/          # Sertifikalar, görseller
-        ├── sertifikalar/
-        └── referans-screenshots/
-```
-
-**🔹 Şimdi Müşteri Dökümanlarını Ekle:**
-
-1. **İster Dokümanı (AI'ya verilecek):**
-   ```
-   FRONTEND-DOCS/Gereksinim-Analizi/ klasörüne kopyala
-   
-   Örnek:
-   - Gereksinim Analizi.pdf (müşteriden gelen orijinal)
-   - Gereksinim Analizi.md (PDF'den markdown'a çevrilmiş)
-   ```
-
-2. **Logolar (projeye dahil edilecek):**
-   ```
-   FRONTEND-DOCS/Files/Logolar/ klasörüne kopyala
-   
-   Örnek:
-   - company-logo.png
-   - company-logo.svg
-   - favicon.ico
-   ```
-
-3. **Diğer Görseller (projeye dahil edilecek):**
-   ```
-   FRONTEND-DOCS/Files/Bilgi-Belge-Gorsel/ klasörüne kopyala
-   
-   Örnek:
-   - sertifikalar/ (ISO belgeleri PDF - web'de gösterilecek)
-   - referans-screenshots/ (referans müşteri logoları)
-   ```
-
-> **💡 Fark:**  
-> - **`Gereksinim-Analizi/`** → AI'ya okutulacak dökümanlar (PRD oluşturmak için)  
-> - **`Files/`** → Web sitesinde kullanılacak statik dosyalar (logo, sertifika PDF)
-
----
-
-### 0.4 Git Repository Başlatma
-
-**Terminal'de çalıştır:**
-
-```powershell
-# Git başlat
-git init
-git branch -M main
-
-# İlk commit
-git add .
-git commit -m "feat: initialize Next.js project with TypeScript and Tailwind"
-```
-
----
-
-### 0.5 GitHub Repository Bağlama (Opsiyonel)
-
-**GitHub'da yeni repo oluştur:**
-1. https://github.com/[organization] → **New repository**
-2. Repository name: `[project-name]-frontend-app`
-3. **Create repository**
-
-**Terminal'de çalıştır:**
-
-```powershell
-# Remote repository bağla
-git remote add origin https://github.com/[organization]/[project-name]-frontend-app.git
-
-# Push
-git push -u origin main
-```
-
----
-
-### 0.6 Geliştirme Sunucusunu Başlatma
-
-**Terminal'de çalıştır:**
-
-```powershell
-npm run dev
-```
-
-**Tarayıcıda aç:** http://localhost:3000
-
-✅ Next.js başlangıç sayfası görünmeli!
-
----
-
-### 0.7 Proje Klasör Yapısını Kontrol Et
-
-**VS Code Explorer'da şu klasörler görünmeli:**
-
-```
-[project-name]-frontend-app/
-├── app/
-│   ├── favicon.ico
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── public/
-├── FRONTEND-DOCS/
-│   ├── FRONTEND-ROADMAP.md
-│   ├── Gereksinim-Analizi/
-│   │   ├── Gereksinim Analizi.pdf
-│   │   └── Gereksinim Analizi.md
-│   └── Files/
-│       ├── Logolar/
-│       │   └── company-logo.png
-│       └── Bilgi-Belge-Gorsel/
-│           └── sertifikalar/
-├── node_modules/
-├── .gitignore
-├── next.config.js
-├── package.json
-├── tailwind.config.ts
-├── tsconfig.json
-└── README.md
-```
-
----
-
-### 0.8 FRONTEND-PRD.md Oluşturma (AI ile)
-
-> **🤖 AMAÇ:** Müşteri isterlerini AI ile detaylı PRD'ye dönüştürmek.
-
-**GitHub Copilot Prompt (Copilot Chat'te çalıştır):**
-
-```markdown
-SEN: Senior Product Manager ve UX Designer'sın.
-
-GÖREV: `#file:FRONTEND-DOCS/Gereksinim-Analizi/Gereksinim Analizi.md` dosyasını oku ve FRONTEND-PRD.md oluştur.
-
-PRD İÇERİĞİ:
-1. **Proje Özeti:** Elevator pitch (2-3 cümle)
-2. **Hedef Kitle:** Kim kullanacak? (user personas)
-3. **Sayfa Yapısı:**
-   - Landing page (Hero, Video Showcase, Footer)
-   - Module A sayfası (Kategoriler + Form)
-   - Module B sayfası (Çözümler + Sertifikalar + Referanslar + Form)
-   - Module C sayfası (Hizmetler + Projeler + Form)
-4. **UI/UX Gereksinimleri:**
-   - Color palette (brand colors)
-   - Typography (font'lar)
-   - Component library (Button, Card, Input, Modal)
-5. **İnteraktif Özellikler:**
-   - Animasyonlar (Framer Motion)
-   - Form validations
-   - Responsive breakpoints
-6. **İçerik Gereksinimleri:**
-   - Hangi statik veriler gerekli? (mock data)
-   - Hangi form'lar olacak?
-
-FORMAT: Markdown, detaylı, developer-friendly
-
-ÇIKTI: `FRONTEND-DOCS/FRONTEND-PRD.md` dosyası olarak kaydet.
-```
-
-**Çıktı Kontrolü:**
-- ✅ FRONTEND-PRD.md oluşturuldu
-- ✅ Tüm sayfa yapıları tanımlandı
-- ✅ Component listesi netleşti
-
----
-
-### 0.9 FRONTEND-TASKS.md Oluşturma (AI ile)
-
-> **🤖 AMAÇ:** PRD'den actionable task listesi çıkarmak.
-
-**GitHub Copilot Prompt:**
-
-```markdown
-SEN: Agile Scrum Master'sın.
-
-GÖREV: `#file:FRONTEND-DOCS/FRONTEND-PRD.md` dosyasını oku ve FRONTEND-TASKS.md oluştur.
-
-TASK LİSTESİ YAPISI:
-- [ ] **Faz 0:** Proje hazırlık ✅ (tamamlandı)
-- [ ] **Faz 1:** Design System ve Klasör Yapısı
-  - [ ] Tailwind config güncelle
-  - [ ] Global styles ekle
-  - [ ] TypeScript types tanımla
-  - [ ] Utility functions yaz
-- [ ] **Faz 2:** Global Component'ler
-  - [ ] Button component
-  - [ ] Card component
-  - [ ] Input component
-  - [ ] Modal component
-  - [ ] Preloader component
-- [ ] **Faz 3:** Landing Page
-  - [ ] Hero section
-  - [ ] Video showcase
-  - [ ] Footer (social links)
-- [ ] **Faz 4:** Modül Sayfaları
-  - [ ] Module A (kategoriler + form)
-  - [ ] Module B (çözümler + sertifikalar + form)
-  - [ ] Module C (hizmetler + projeler + form)
-- [ ] **Faz 5:** Animasyonlar
-- [ ] **Faz 6:** Responsive & Accessibility
-- [ ] **Faz 7:** Mock Data & Test
-
-FORMAT: GitHub checkbox formatı, priority etiketleri
-
-ÇIKTI: `FRONTEND-DOCS/FRONTEND-TASKS.md` dosyası olarak kaydet.
-```
-
-**Çıktı Kontrolü:**
-- ✅ FRONTEND-TASKS.md oluşturuldu
-- ✅ Tüm task'lar listelenmiş
-- ✅ Checkbox formatı doğru
-
----
-
-**✅ FAZ 0 TAMAMLANDI!**
-
-Çıktılar:
-- ✅ Next.js projesi kuruldu
-- ✅ Git repository aktif
-- ✅ Dev server çalışıyor
-- ✅ Müşteri dökümanları eklendi
-- ✅ FRONTEND-PRD.md oluşturuldu (AI ile)
-- ✅ FRONTEND-TASKS.md oluşturuldu (AI ile)
-
----
-
-## 🎨 FAZ 1: DESIGN SYSTEM VE TEMEL YAPI
-
-> **SÜRE:** 1-2 saat  
-> **ÇIKTI:** Tailwind config + Klasör yapısı + Global styles
-
-### 1.1 Klasör Yapısı Oluşturma
-
-**Hedef klasör yapısı:**
-```
-project-name/
-├── app/
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Landing page
-│   ├── globals.css         # Global styles
-│   ├── [module-a]/
-│   │   └── page.tsx
-│   ├── [module-b]/
-│   │   └── page.tsx
-│   └── [module-c]/
-│       └── page.tsx
-│
-├── components/
-│   ├── Preloader.tsx
-│   ├── layout/
-│   │   ├── PageTransition.tsx
-│   │   ├── BackButton.tsx
-│   │   └── SocialLinks.tsx
-│   ├── sections/
-│   │   ├── Hero.tsx
-│   │   ├── VideoShowcase.tsx
-│   │   └── Carousel.tsx
-│   └── shared/
-│       ├── Button.tsx
-│       ├── Card.tsx
-│       ├── Modal.tsx
-│       └── Input.tsx
-│
-├── lib/
-│   ├── animations.ts       # Framer Motion variants
-│   ├── transitions.ts      # Page transitions
-│   ├── utils.ts            # Helper functions
-│   └── constants.ts        # App constants
-│
-├── types/
-│   └── index.ts            # TypeScript types
-│
-├── public/
-│   └── assets/
-│       ├── icons/
-│       ├── logos/
-│       └── docs/
-│
-└── FRONTEND-DOCS/
-```
-
-**PowerShell komutu (klasörleri oluştur):**
-```powershell
-mkdir components\layout, components\sections, components\shared, lib, types, public\assets\icons, public\assets\logos, public\assets\docs
-```
-
-### 1.2 Tailwind Config Güncelleme
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Senior Frontend Developer ve Design System uzmanısın.
-
-GÖREV: `tailwind.config.ts` dosyasını güncelle.
-
-DESIGN SYSTEM:
-- **Colors:**
-  - Primary: Blue (#0066CC, #004C99, #003366)
-  - Secondary: Red (#E31837, #B91429)
-  - Accent: Green (#00A86B), Yellow (#FFB900), Orange (#FF6B00)
-  - Neutral: Gray scale (50-950)
-
-- **Fonts:**
-  - System fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto
-
-- **Spacing:**
-  - Custom: 18, 22, 26 (Tailwind default'a ek)
-
-- **Animations:**
-  - fadeIn, slideUp, scaleUp
-
-ÇIKTI: Güncellenmiş `tailwind.config.ts` dosyası.
-```
-
-### 1.3 Global Styles (globals.css)
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: CSS uzmanısın.
-
-GÖREV: `app/globals.css` dosyasını güncelle.
-
-İÇERİK:
-- Tailwind directives (@tailwind base, components, utilities)
-- Custom scrollbar styles
-- Smooth scroll behavior
-- Selection color (brand color)
-- Focus visible styles
-
-ÇIKTI: Güncellenmiş `app/globals.css` dosyası.
-```
-
-### 1.4 TypeScript Types Tanımlama
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: TypeScript uzmanısın.
-
-GÖREV: `types/index.ts` dosyasını oluştur.
-
-TYPES:
-- Card (title, description, image, link)
-- Video (id, title, thumbnail, url, module)
-- FormData (generic form interface)
-- Category, Solution, Service (module-specific)
-
-ÇIKTI: `types/index.ts` dosyası.
-```
-
-### 1.5 Utility Functions (lib/utils.ts)
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React uzmanısın.
-
-GÖREV: `lib/utils.ts` dosyasını oluştur.
-
-FUNCTIONS:
-- cn(...classes): Tailwind class merger (clsx + tailwind-merge)
-- formatDate(date): Tarih formatı
-- slugify(text): URL slug oluştur
-
-ÇIKTI: `lib/utils.ts` dosyası.
-```
-
-### 1.6 Constants (lib/constants.ts)
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Frontend Developer'sın.
-
-GÖREV: `lib/constants.ts` dosyasını oluştur.
-
-CONSTANTS:
-- SITE_CONFIG: { name, description, url, email, phone }
-- SOCIAL_LINKS: { linkedin, twitter, instagram }
-- MODULE_ROUTES: { moduleA: "/module-a", ... }
-- ANIMATION_DURATION: Default animation süreleri
-
-ÇIKTI: `lib/constants.ts` dosyası.
-```
-
----
-
-**✅ FAZ 1 TAMAMLANDI!**
-
-Çıktılar:
-- ✅ Klasör yapısı oluşturuldu
-- ✅ Tailwind config hazır (brand colors, fonts)
-- ✅ Global styles set edildi
-- ✅ TypeScript types tanımlandı
-- ✅ Utility functions hazır
-
----
-
-## 🧩 FAZ 2: GLOBAL COMPONENTLER
-
-> **SÜRE:** 2-3 saat  
-> **ÇIKTI:** Reusable component library
-
-### 2.1 Shared UI Components
-
-#### Button Component
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React Component Library uzmanısın.
-
-GÖREV: `components/shared/Button.tsx` komponenti oluştur.
-
-ÖZELLİKLER:
-- Variants: primary, secondary, ghost, danger
-- Sizes: sm, md, lg
-- States: default, hover, active, disabled, loading
-- Icons: Optional leading/trailing icon
-- TypeScript: Strict typing
-- Accessibility: ARIA labels, keyboard navigation
-
-ÇIKTI: `components/shared/Button.tsx` dosyası.
-```
-
-#### Card Component
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React Component uzmanısın.
-
-GÖREV: `components/shared/Card.tsx` komponenti oluştur.
-
-ÖZELLİKLER:
-- Props: image, title, description, link, onClick
-- Hover effect: Scale + shadow
-- Optional: Badge, action buttons
-- Responsive: Mobile/Desktop layouts
-
-ÇIKTI: `components/shared/Card.tsx` dosyası.
-```
-
-#### Input Component
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Form component uzmanısın.
-
-GÖREV: `components/shared/Input.tsx` komponenti oluştur.
-
-ÖZELLİKLER:
-- Props: label, placeholder, type, error, required
-- States: focus, error, disabled
-- Icon support: Leading icon
-- Accessibility: ARIA labels, error messages
-
-ÇIKTI: `components/shared/Input.tsx` dosyası.
-```
-
-#### Modal Component
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React Modal uzmanısın.
-
-GÖREV: `components/shared/Modal.tsx` komponenti oluştur.
-
-ÖZELLİKLER:
-- Props: isOpen, onClose, title, children
-- Backdrop: Click to close
-- Animation: Fade in/out (Framer Motion)
-- Accessibility: Focus trap, ESC to close, ARIA
-- Portal: Render outside DOM tree
-
-ÇIKTI: `components/shared/Modal.tsx` dosyası.
-```
-
-### 2.2 Layout Components
-
-#### PageTransition
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Framer Motion uzmanısın.
-
-GÖREV: `components/layout/PageTransition.tsx` komponenti oluştur.
-
-ÖZELLİKLER:
-- Wrapper component: Sayfa geçişlerini wrap eder
-- Animation: Fade + slide up
-- Duration: 0.3s
-- Children: React.ReactNode
-
-ÇIKTI: `components/layout/PageTransition.tsx` dosyası.
-```
-
-#### BackButton
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Next.js navigation uzmanısın.
-
-GÖREV: `components/layout/BackButton.tsx` komponenti oluştur.
-
-ÖZELLİKLER:
-- useRouter hook ile geri git
-- Icon: Arrow left
-- Animation: Hover scale
-- Position: Fixed top-left veya inline
-
-ÇIKTI: `components/layout/BackButton.tsx` dosyası.
-```
-
-#### SocialLinks
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React component uzmanısın.
-
-GÖREV: `components/layout/SocialLinks.tsx` komponenti oluştur.
-
-ÖZELLİKLER:
-- Props: links (linkedin, email, phone)
-- Icons: SVG veya React Icons
-- Layout: Horizontal/Vertical
-- Hover: Scale animation
-
-ÇIKTI: `components/layout/SocialLinks.tsx` dosyası.
-```
-
-### 2.3 Preloader Component
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Animation uzmanısın.
-
-GÖREV: `components/Preloader.tsx` komponenti oluştur.
-
-DAVRANIŞI:
-- İlk ziyaret: 3 saniye logo animasyonu
-- localStorage kontrolü: "hasVisited" key
-- Sonraki ziyaretler: Preloader gösterme
-- Animation: Fade-out (Framer Motion)
-- Logo: Company logo + scale animation
-
-ÇIKTI: `components/Preloader.tsx` dosyası.
-```
-
----
-
-**✅ FAZ 2 TAMAMLANDI!**
-
-Çıktılar:
-- ✅ Button, Card, Input, Modal component'leri hazır
-- ✅ PageTransition, BackButton, SocialLinks hazır
-- ✅ Preloader component hazır
-- ✅ Tüm component'ler TypeScript + Accessible
-
----
-
-## 🏠 FAZ 3: LANDING PAGE
-
-> **SÜRE:** 2-3 saat  
-> **ÇIKTI:** Ana sayfa (Hero + Video Showcase + Footer)
-
-### 3.1 Root Layout (app/layout.tsx)
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Next.js 14 uzmanısın.
-
-GÖREV: `app/layout.tsx` dosyasını güncelle.
-
-İÇERİK:
-- Metadata: title, description, openGraph
-- Font optimization: System fonts
-- Preloader wrapper: <Preloader /> ekle
-- Global CSS import
-- Children render
+**Havsan Grup Web Projesi** 
 
-ÖRNEK METADATA:
-- title: "[COMPANY_NAME] | [Slogan]"
-- description: "150 karakterlik açıklama"
-- openGraph: Image, title, description
-
-ÇIKTI: Güncellenmiş `app/layout.tsx` dosyası.
-```
+**Müşteri İsterleri ve Gereksinim Dokümanı** 
 
-### 3.2 Landing Page (app/page.tsx)
+Bu doküman, Havsan Group web sitesinin tasarım, yazılım ve içerik gereksinimlerini detaylandırmaktadır. 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Senior React Developer'sın.
+**1\. Genel Tasarım ve UI/UX Standartları** 
 
-GÖREV: `app/page.tsx` landing page'i oluştur.
+● Hiç bir sayfada üstte menü istemiyorum. Sayfa içeriğinde her şey ulaşılabilir olmalı. ● Kullanıcı 3 alt menüde de istediği tüm sonuçlara en fazla 3 tıklama ile erişebilmeli. 
 
-SAYFA YAPISI:
-1. **Hero Section:**
-   - Full-screen (h-screen)
-   - Company logo (merkez, büyük)
-   - Slogan (alt, fade-in animation)
-   - Scroll indicator (arrow down, bounce animation)
+● Renk Paleti: Google marka renkleri (Mavi, Kırmızı, Sarı, Yeşilin belirli tonları) genel tema olarak benimsenecektir. ( 
 
-2. **Video Showcase Section:**
-   - 3 modül kartı (grid layout)
-   - Her kart: Thumbnail, başlık, açıklama, "İncele" butonu
-   - Hover: Scale effect
-   - Navigate: useRouter ile modül sayfasına git
+Yaban Mersini: **\#4285F4** 
 
-3. **Footer:**
-   - Social links component
-   - Copyright text
-   - Background: Dark
+Zincifre : **\#EA4335** 
 
-ANIMATION:
-- Framer Motion: Scroll reveal animations
-- Stagger: Kartlar sırayla appear
+Seçici Sarı : **\#FBBC05** 
 
-MOCK DATA:
-- 3 video: moduleA, moduleB, moduleC
-- Thumbnail'ler: Placeholder image (unsplash)
+Deniz Yeşili : **\#34A853** 
 
-ÇIKTI: `app/page.tsx` dosyası.
-```
+) 
 
-### 3.3 Framer Motion Animations (lib/animations.ts)
+● **Arayüz Tarzı:** Modern, temiz,basit ve göz yormayan, müşteri istediğine 3 tıkta ulaşabileceği animasyonlarla zenginleştirilmiş, kullanıcı dostu bir arayüz. ● **Duyarlılık (Responsive):** Hem mobil hem de masaüstü cihazlarda sade, tek düze ve akıcı bir görünüm sağlanmalıdır. 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Framer Motion uzmanısın.
+● **Altyapı:** Web sitesi tasarımı ve kod yapısı, ileride gelebilecek yeni isteklere ve iş kolu genişlemelerine göre **genişletilebilir** (modüler) olmalı, ancak ana iskelet yapısı bozulmaz nitelikte kurgulanmalıdır. 
 
-GÖREV: `lib/animations.ts` dosyasını oluştur.
+**2\. Açılış ve Ana Sayfa Yapısı** 
 
-VARIANTS:
-- fadeIn: { hidden: { opacity: 0 }, visible: { opacity: 1 } }
-- slideUp: { hidden: { y: 50, opacity: 0 }, visible: { y: 0, opacity: 1 } }
-- scaleUp: { hidden: { scale: 0.8, opacity: 0 }, visible: { scale: 1, opacity: 1 } }
-- staggerContainer: { visible: { transition: { staggerChildren: 0.2 } } }
+**2.1. Yükleme Ekranı (Preloader)** 
 
-ÇIKTI: Export edilmiş Framer Motion variants.
-```
+● **Referans:** https://www.tempergroup.com.au/ sitesindeki açılış animasyonu referans alınacaktır. “Tamper” ve “Group” yazıları üstten ve alttan gelip birleşiyor bu sürede de arka planda sayfa yükleniyor. Bizde de bu ifadeler “HAVSAN” ve “”Grup” ifadeleri  
+olacak. 
 
-### 3.4 Hero Section Component (Optional - Reusable)
+**(Preloader animasyon referansı için bkz. Gereksinim Analizi.pdf Sayfa 2)**
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React component uzmanısın.
+● **İçerik:** "Temper Group" yazısı yerine **"HAVSAN Grup"** yazacaktır. 
 
-GÖREV: `components/sections/Hero.tsx` komponenti oluştur.
+● HAVSAN Group altında whatsapp, instagram, linkedin sayfalarımızın linkleri minimalist şekilde yer almalı havsan grup yazısı 1 saniye kaldıktan sonra bu linkler de gidebilir sorun değil. 
 
-ÖZELLİKLER:
-- Props: title, subtitle, backgroundImage (optional)
-- Layout: Full-screen, centered
-- Animation: Fade-in on mount
+whatsapp : https://wa.me/905347855957 
 
-ÇIKTI: `components/sections/Hero.tsx` dosyası.
-```
+instagram : https://www.instagram.com/havsan.yapayzeka/ 
 
-### 3.5 Video Showcase Component
+linkedin :https://tr.linkedin.com/in/atifertugrulkan 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React component uzmanısın.
+**2.2. Ana Sayfa Navigasyonu (Landing)** 
 
-GÖREV: `components/sections/VideoShowcase.tsx` komponenti oluştur.
+● **Yapı:** Giriş animasyonundan sonra ekran 3 ana parçaya (kolona) bölünecektir, üç kart bu defa alt alta sayfayı kaydırmadan görünebilecek boyutta olmalı., bu bölmeler bilgi kartı gibi google fx tasarımına yakın olmalıdır.Mobil görünüme geçtiğinde bu üç kart bu defa alt alta sayfayı kaydırmadan görünebilecek boyutta olmalı. 
 
-ÖZELLİKLER:
-- Props: videos (array of { id, title, thumbnail, module })
-- Layout: Grid (1 col mobile, 3 col desktop)
-- Card: Image, title, description, CTA button
-- Animation: Scroll reveal
+● **Görsel Stil:** https://labs.google/fx adresindeki yapı referans alınacaktır.
 
-ÇIKTI: `components/sections/VideoShowcase.tsx` dosyası.
-```
+**(Google FX labs tasarım referansı için bkz. Gereksinim Analizi.pdf Sayfa 3)**  
+**(Kart hover efektleri ve animasyonlar için bkz. Gereksinim Analizi.pdf Sayfa 4)**
 
----
+○ Her bir bölüm (div) görsel içerikli olacaktır,her görsel ilgili iştirak ile ilgili görseller olmalı örneğin enerji için güneş enerjisi bg'si oluşturulabilir.Robotik kodlama için çocukların robotik kodlama yaptığı bir görsel olmalıdır.Yapay zeka için ise yazılım ve yapay zeka eğitimini simgeleyecek bir görsel olmalıdır. Üzerine geldiğimiz kart renk canlanıyor ve çizgi animasyonlar geliyor.
 
-**✅ FAZ 3 TAMAMLANDI!**
+○ Yazı fontu da Apple fontları olsun. 
 
-Çıktılar:
-- ✅ Landing page tamamlandı (Hero + Video Showcase + Footer)
-- ✅ Preloader entegre edildi
-- ✅ Animasyonlar uygulandı (Framer Motion)
-- ✅ Responsive (mobile-first)
+○ Div'ler gölgeli duracak, fare (mouse) üzerine gelindiğinde aydınlanma/parlama efekti (hover effect) çalışacaktır. 
 
-**Test:** http://localhost:3000 → Landing page görünmeli ✅
+Web’de kartlar yanyana mobil’de kartlar alt alta gelecek şekilde yapılmalı ve aşağı kaydırılmadan hepsi görülebilmeli. https://www.sabanci.com/tr/ Bu sabancı websitesindeki giriş gibi yapılmalı mobil versiyon için.  
+**(Mobil responsive layout referansı için bkz. Gereksinim Analizi.pdf Sayfa 5)**
 
----
+○ Burada yer alan Dijital teknoloji,malzeme teknolojileri ve enerji teknolojileri yazan kısımlarda Havsan Robotik Kodlama Merkezi ,Havsan AI (Yapay Zeka ve Yazılım Çözümleri),Havsan Enerji alt başlıkları yazmalıdır. 
 
-## 📄 FAZ 4: MODÜL SAYFALARI
+● **Fonksiyon:** İlgili sütuna tıklandığında, kullanıcının seçtiği alt iştirakın sayfasına/sitesine yönlendirme yapılacaktır. 
 
-> **SÜRE:** 4-6 saat  
-> **ÇIKTI:** 3 modül sayfası (mock verilerle)
+**3\. Alt İştirakler ve Sayfa İçerikleri** 
 
-### 4.1 Modül Sayfası Şablonu
+Web sitesi aşağıdaki 3 ana başlık altında detaylandırılacaktır:  
+**3.1. Havsan Robotik Kodlama Merkezi (Elazığ Ataşehir)** 
 
-**Her modül için ortak yapı:**
-1. Hero section (başlık + açıklama)
-2. Content section (kartlar, listeler)
-3. Form section (kayıt/talep/teklif formu)
-4. Back button (navigate home)
+**Kullanılacak tema renkleri ve kodları:** 
 
-### 4.2 Module A Sayfası (app/[module-a]/page.tsx)
+Bölümün Ana Renk Paleti ve Kullanım Rehberi: 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React ve Next.js uzmanısın.
+\-**Teknoloji Mavisi:** `#4285F4` 
 
-GÖREV: `app/module-a/page.tsx` sayfasını oluştur.
+**\-Platin Gümüş:** `#E3E5E8` 
 
-REFERANS: `#file:FRONTEND-DOCS/FRONTEND-PRD.md` dosyasındaki Module A açıklaması
+**\-Devre Sarısı:** `#FBBC05` 
 
-SAYFA YAPISI:
-1. **Hero Section:**
-   - Başlık: "Module A"
-   - Açıklama: Kısa tanıtım
-   - Background: Gradient
+**\-Derin Uzay Laciverti:** `#1A237E` 
 
-2. **Video Player Section:**
-   - Embedded video (YouTube/Vimeo)
-   - veya placeholder video
+● **Konumlandırma:** "Elazığ Ataşehir Akademi" olarak tanıtılacaktır. Kordinatları: 38.656075, 39.167103 
 
-3. **Category Grid:**
-   - Mock data: 6 kategori
-   - Card component kullan
-   - Grid: 2 col mobile, 3 col desktop
+● **Görseller:** Eğitimlerden çekilen yüksek kaliteli fotoğraflar kullanılacaktır. ● **İçerik:** 
 
-4. **Registration Form:**
-   - Fields: Ad Soyad, Email, Telefon, Kategori (select), Mesaj
-   - Input component kullan
-   - Submit button (disabled - backend henüz yok)
-   - Form validation (client-side)
+○ Hedef yaş grubu bilgisi. 
 
-5. **Back Button:**
-   - Sol üst köşe
-   - Navigate: "/" (home)
+○ **Ücretsiz 2 saat deneme dersi** vurgusu. 
 
-MOCK DATA:
-```typescript
-const categories = [
-  { id: 1, name: "Kategori 1", description: "Açıklama", icon: "📚" },
-  { id: 2, name: "Kategori 2", description: "Açıklama", icon: "🎓" },
-  // ... 4 tane daha
-]
-```
+Ücretsiz deneme dersine basınca öğrenci kayıt bilgileri alacak ve mail bilgi@havsanrobotik.com.tr ye mail gelecek bilgiler. 
 
-ANIMATION: Scroll reveal (fadeIn, slideUp)
+● **Videolar:** En iyi projelerden seçilen 3 adet video yer alacaktır. 
 
-ÇIKTI: `app/module-a/page.tsx` dosyası.
-```
+○ *Özellik:* Mouse ile videonun üzerine gelindiğinde otomatik önizleme (preview) oynamalıdır. 
 
-### 4.3 Module B Sayfası (app/[module-b]/page.tsx)
+○ \-En güzel 3 Videonun Youtube linkleri: 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React ve Next.js uzmanısın.
+\-https://www.youtube.com/shorts/OFbR8CATsVE 
 
-GÖREV: `app/module-b/page.tsx` sayfasını oluştur.
+\-https://www.youtube.com/shorts/4oRs3L9Gia4 
 
-SAYFA YAPISI:
-1. **Hero Section**
+https://www.youtube.com/shorts/5wUXXJfoVOE 
 
-2. **Solutions Grid:**
-   - Mock data: 4 çözüm
-   - Card component: Image, title, description
+○ whatsapp : https://wa.me/905347855957 
 
-3. **Certificate Showcase:**
-   - Mock data: ISO sertifikaları (PDF thumbnails)
-   - Grid layout
-   - Modal: Tıklanınca büyük görsel
+instagram : https://www.instagram.com/havsan.robotik/ 
 
-4. **Reference Carousel:**
-   - Mock data: Müşteri logoları
-   - Carousel component (horizontal scroll)
+○ 
 
-5. **Inquiry Form:**
-   - Fields: Firma, Yetkili, Email, Telefon, Talep Türü, Mesaj
-   - Submit button (disabled)
+linkedin : 
 
-6. **Back Button**
+youtube : https://www.youtube.com/@havsan.robotik 
 
-MOCK DATA:
-```typescript
-const solutions = [
-  { id: 1, title: "Çözüm 1", description: "Açıklama", image: "/placeholder.jpg" },
-  // ... 3 tane daha
-]
+**3.2. Havsan AI (Yapay Zeka ve Yazılım Çözümleri)** 
 
-const certificates = [
-  { id: 1, name: "ISO 9001", thumbnail: "/cert1.jpg" },
-  // ... 5 tane daha
-]
+**Kullanılacak tema renkleri ve kodları:** 
 
-const references = [
-  { id: 1, company: "Şirket 1", logo: "/logo1.png" },
-  // ... 10 tane daha
-]
-```
+**Bölümün Ana Renk Paleti ve Kullanım Rehberi:** 
 
-ÇIKTI: `app/module-b/page.tsx` dosyası.
-```
+Bölümün Ana Renk Paleti ve Kullanım Rehberi: 
 
-### 4.4 Module C Sayfası (app/[module-c]/page.tsx)
+**\- Mavi (Başlangıç): `#4E85EB`** 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React ve Next.js uzmanısın.
+**`-`Mor (Orta): `#8875D6`** 
 
-GÖREV: `app/module-c/page.tsx` sayfasını oluştur.
+**`-`Mercan (Bitiş): `#D9666F`**  
+● **Tasarım Dili:** Google ürünleri, logoları ve renkleri bu bölümde baskın olacaktır. ● **Hizmetler:** 
 
-SAYFA YAPISI:
-1. **Hero Section**
+○ **Kurumsal Yapay Zeka Eğitimi:** 
 
-2. **Services Grid:**
-   - Mock data: 6 hizmet
-   - Card: Icon, title, description
+■ Eğitim dökümanları, eğitim takvimi ve kazanımları (ne işe yaradığı). ■ Müsaitlik takvimi (Canlı/Güncel). 
 
-3. **Project Showcase:**
-   - Mock data: 8 proje
-   - Grid: 2x2 mobile, 4x2 desktop
-   - Card: Image, title, completion date
+■ Eğitim bilgi ve belgeleri (İndirilebilir formatta). 
 
-4. **Quote Form:**
-   - Fields: Firma, Yetkili, Email, Telefon, Proje Açıklaması, Bütçe Aralığı
-   - Submit button (disabled)
+○ **Google Workspace Çözümleri:** 
 
-5. **Back Button**
+■ "Google Partner" ibaresi ve Google görselleri belirgin olacak. 
 
-MOCK DATA:
-```typescript
-const services = [
-  { id: 1, title: "Hizmet 1", description: "Açıklama", icon: "🔧" },
-  // ... 5 tane daha
-]
+■ Hizmetler: Kurulum, Eğitim, Danışmanlık. 
 
-const projects = [
-  { id: 1, title: "Proje 1", image: "/project1.jpg", date: "2024-01" },
-  // ... 7 tane daha
-]
-```
+○ **Yazılım Geliştirme:** 
 
-ÇIKTI: `app/module-c/page.tsx` dosyası.
-```
+■ Mobil Uygulama (iOS, Android). 
 
-### 4.5 Carousel Component (components/sections/Carousel.tsx)
+■ Web Uygulama Geliştirme. 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React ve animation uzmanısın.
+■ Kurumsal firmalara özel (her ölçekte) yazılım kodlama projeleri. 
 
-GÖREV: `components/sections/Carousel.tsx` komponenti oluştur.
+○ **Bilgi/Belge ve Süreç Danışmanlığı:** 
 
-ÖZELLİKLER:
-- Props: items (array), autoPlay (boolean), interval (number)
-- Navigation: Previous/Next buttons
-- Indicators: Dots (bottom)
-- Touch: Swipe support (mobile)
-- Animation: Smooth slide
+■ ISO 42001 Yapay Zeka Yönetim Sistemi (Danışmanlık ve Eğitim). 
 
-LIBRARY: Swiper.js veya custom implementation
+■ ISO 27001 Bilgi Güvenliği Yönetim Sistemi (Eğitim). 
 
-ÇIKTI: `components/sections/Carousel.tsx` dosyası.
-```
+■ KVKK (Kişisel Verilerin Korunması Kanunu) Eğitimi. 
 
----
+● **Sosyal Kanıt:** 
 
-**✅ FAZ 4 TAMAMLANDI!**
+○ Müşteri yorumları bölümü. 
 
-Çıktılar:
-- ✅ Module A sayfası tamamlandı (kategoriler + form)
-- ✅ Module B sayfası tamamlandı (çözümler + sertifikalar + referanslar + form)
-- ✅ Module C sayfası tamamlandı (hizmetler + projeler + form)
-- ✅ Tüm sayfalar mock verilerle çalışıyor
-- ✅ Form'lar UI olarak hazır (submit disabled)
+○ Sahip olunan ISO sertifikalarının görselleri. 
 
-**Test:** Her modül sayfasını tarayıcıda kontrol et ✅
+● **Referanslar Bölümü (Kritik):** 
 
----
+○ Ana sayfada yer alacak. 
 
-## ✨ FAZ 5: ANIMASYONLAR VE POLISH
+○ Kayan görsel (carousel/slider) formatında. 
 
-> **SÜRE:** 2-3 saat  
-> **ÇIKTI:** Smooth animations + micro-interactions
+○ Logolar okunaklı, renkli ve tekdüze (aynı boyut/hizada). 
 
-### 5.1 Page Transitions
+○ Logoya tıklandığında ilgili firmanın web sitesine yönlendirme yapılacak. ● Konum : Ankara/ Yeni Mahalle 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Framer Motion uzmanısın.
+\- 39°57'14.1"N 32°47'08.0"E 
 
-GÖREV: `lib/transitions.ts` dosyasını oluştur.
+● XQ3P+H67 Yenimahalle, Ankara 
 
-TRANSITIONS:
-- pageTransition: Sayfa geçiş animasyonu config
-- slideTransition: Slide left/right
-- fadeTransition: Fade in/out
+● \<iframe 
 
-Her page.tsx'i PageTransition component ile wrap et.
+src="https://www.google.com/maps/embed?pb=\!1m17\!1m12\!1m3\!1d191.152462539 86064\!2d32.78543665905237\!3d39.95392765664047\!2m3\!1f0\!2f0\!3f0\!3m2\!1i1024\!2i 768\!4f13.1\!3m2\!1m1\!2zMznCsDU3JzE0LjEiTiAzMsKwNDcnMDguMCJF\!5e0\!3m2\!1s 
 
-ÇIKTI: `lib/transitions.ts` dosyası + page.tsx güncellemeleri.
-```
+tr\!2str\!4v1764345090962\!5m2\!1str\!2str" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" 
 
-### 5.2 Scroll Reveal Animations
+referrerpolicy="no-referrer-when-downgrade"\>\</iframe\> 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Intersection Observer uzmanısın.
+● whatsapp : https://wa.me/905347855957 
 
-GÖREV: `lib/hooks/useIntersection.ts` custom hook'u oluştur.
+● instagram : https://www.instagram.com/havsan.yapayzeka/ 
 
-AMAÇ: Element viewport'a girdiğinde animation tetikle.
+● linkedin : 
 
-KULLANIM:
-```typescript
-const ref = useIntersection()
-<motion.div ref={ref} variants={fadeIn}>Content</motion.div>
-```
+● youtube : https://www.youtube.com/@havsan.yapayzeka 
 
-ÇIKTI: `lib/hooks/useIntersection.ts` dosyası.
-```
+**3.3. Havsan Enerji** 
 
-### 5.3 Hover ve Click Animations
+**Kullanılacak renkler ve kodları** 
 
-**Tüm interactive elementlere ekle:**
-- Button: Hover scale (1.05), active scale (0.95)
-- Card: Hover shadow, scale (1.02)
-- Link: Underline animation
+Bölümün Ana Renk Paleti ve Kullanım Rehberi: 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Micro-interaction uzmanısın.
+**\-Polisilikon** (Sarı \- Hardal Tonu),**HEX:** `#F3C242`  
+**\-Külçe** (Turuncu \- Sarı),**HEX:** `#F99F1B` 
 
-GÖREV: Tüm Button ve Card component'lerine hover/click animasyonları ekle.
+\-**Gofret** (Turuncu),**HEX:** `#E87D25` 
 
-ANIMATION:
-- whileHover={{ scale: 1.05 }}
-- whileTap={{ scale: 0.95 }}
-- transition={{ type: "spring", stiffness: 300 }}
+`-`**Hücre** (Koyu Turuncu / Vermilyon),**HEX:** `#EE5F26` 
 
-ÇIKTI: Güncellenmiş Button.tsx ve Card.tsx.
-```
+`-`**Modül** (Gün Batımı Turuncusu),**HEX:** `#F15B24` 
 
-### 5.4 Loading States
+**\-Montaj** (Turkuaz / Zümrüt Yeşili),**HEX:** `#00A786` 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Loading state uzmanısın.
+**\-Güç Çevirici** (Gök Mavisi / Cerulean),**HEX:** `#009CC9` 
 
-GÖREV: `components/shared/Loader.tsx` komponenti oluştur.
+● **Hizmet Kapsamı:** 
 
-TYPES:
-- Spinner: Rotating circle
-- Skeleton: Content placeholder
-- Progress: Linear progress bar
+○ GES (Güneş Enerjisi Santrali) bakım, onarım, takip ve taahhüt işleri. ○ Drone ile termal izleme. 
 
-ÇIKTI: `components/shared/Loader.tsx` dosyası.
-```
+○ Panel temizliği. 
 
----
+○ Güç takibi ve performans analizi. 
 
-**✅ FAZ 5 TAMAMLANDI!**
+○ Depolamalı GES danışmanlığı. 
 
-Çıktılar:
-- ✅ Page transitions uygulandı
-- ✅ Scroll reveal animations eklendi
-- ✅ Hover ve click micro-interactions
-- ✅ Loading states hazır
+● **Teknoloji Vurgusu:** 
 
-**Test:** Tüm sayfaları gez, animasyonların smooth olduğunu kontrol et ✅
+○ Yapay zeka destekli arıza tespiti ve aksiyon planı oluşturma. 
 
----
+○ Sahaya özel hızlı ve kesin arıza tespiti. 
 
-## 📱 FAZ 6: RESPONSIVE VE ACCESSIBILITY
+● whatsapp : https://wa.me/905347855957 
 
-> **SÜRE:** 2-3 saat  
-> **ÇIKTI:** Mobile-friendly + WCAG 2.1 AA compliant
+● instagram : https://www.instagram.com/havsan.yapayzeka/ 
 
-### 6.1 Responsive Design Audit
+● linkedin :https://www.linkedin.com/in/ahmet-alptekin-kan-4a86a72a3/ ● youtube : https://www.youtube.com/@havsan.yapayzeka 
 
-**Test Cihazları:**
-- Mobile: iPhone 13 (390x844), Samsung Galaxy S21 (360x800)
-- Tablet: iPad Pro (1024x1366)
-- Desktop: 1920x1080, 2560x1440
+**4\. İndirilebilir Dosyalar ve Materyaller** 
 
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Responsive design uzmanısın.
+Site genelinde veya ilgili bölümlerde kullanıcıların indirebileceği dosyalar şunlardır: 
 
-GÖREV: Tüm sayfaları ve component'leri responsive yap.
+1\. **Eğitim Dokümanları:** Havsan AI bölümünde ilgili eğitimlerin bilgi ve belgeleri. 2\. **Eğitim Birim ve Katılımcı Listesi:** (Format: PDF/Excel). 
 
-KONTROL LİSTESİ:
-- [ ] Grid layouts: 1 col mobile, 2 col tablet, 3-4 col desktop
-- [ ] Font sizes: Responsive (text-base → text-lg)
-- [ ] Spacing: Smaller mobile padding/margin
-- [ ] Navigation: Mobile menu (eğer varsa)
-- [ ] Images: Responsive sizes, lazy loading
-- [ ] Forms: Full-width mobile, 50% desktop
+3\. **Kurumsal Çözüm Kataloğu:** Tüm hizmetlerin yer aldığı detaylı katalog.
 
-TAILWIND BREAKPOINTS:
-- sm: 640px
-- md: 768px
-- lg: 1024px
-- xl: 1280px
-- 2xl: 1536px
-
-ÇIKTI: Güncellenmiş component'ler.
-```
-
-### 6.2 Accessibility Audit
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Web accessibility (a11y) uzmanısın.
-
-GÖREV: WCAG 2.1 AA standardına göre tüm sayfaları kontrol et.
-
-KONTROL LİSTESİ:
-- [ ] **Alt texts:** Tüm image'lerde alt attribute
-- [ ] **ARIA labels:** Button'larda aria-label (icon-only)
-- [ ] **Keyboard navigation:** Tab order doğru, focus visible
-- [ ] **Color contrast:** 4.5:1 minimum (text/background)
-- [ ] **Form labels:** Her input'ta <label> var
-- [ ] **Error messages:** Screen reader accessible
-- [ ] **Semantic HTML:** <header>, <main>, <footer>, <nav>
-- [ ] **Skip to content:** Link (görünmez, keyboard ile erişilebilir)
-
-TOOLS:
-- Lighthouse (Accessibility score)
-- axe DevTools (Chrome extension)
-
-ÇIKTI: Düzeltilmiş component'ler + accessibility report.
-```
-
-### 6.3 SEO Metadata
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: SEO uzmanısın.
-
-GÖREV: Her page.tsx'e `metadata` export ekle.
-
-ÖRNEK:
-```typescript
-export const metadata: Metadata = {
-  title: "Module A | [COMPANY_NAME]",
-  description: "150 karakterlik açıklama",
-  openGraph: {
-    title: "Module A",
-    description: "OG açıklama",
-    images: ["/og-image-module-a.jpg"],
-  },
-}
-```
-
-SAYFALAR:
-- app/page.tsx
-- app/module-a/page.tsx
-- app/module-b/page.tsx
-- app/module-c/page.tsx
-
-ÇIKTI: Güncellenmiş page.tsx dosyaları.
-```
-
----
-
-**✅ FAZ 6 TAMAMLANDI!**
-
-Çıktılar:
-- ✅ Tüm sayfalar responsive (mobile, tablet, desktop)
-- ✅ WCAG 2.1 AA compliant
-- ✅ SEO metadata eklendi
-- ✅ Lighthouse score: 90+ (tüm kategoriler)
-
-**Test:**
-- Chrome DevTools: Mobile view test et
-- Lighthouse: Accessibility ve SEO skorlarını kontrol et ✅
-
----
-
-## 🧪 FAZ 7: MOCK DATA VE TEST
-
-> **SÜRE:** 1-2 saat  
-> **ÇIKTI:** Mock data dosyaları + End-to-end test
-
-### 7.1 Mock Data Dosyaları Oluşturma
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: Data modeling uzmanısın.
-
-GÖREV: `lib/data/` klasöründe mock data dosyaları oluştur.
-
-DOSYALAR:
-1. **videos.ts:** Landing page videoları
-2. **categories.ts:** Module A kategorileri
-3. **solutions.ts:** Module B çözümleri
-4. **certificates.ts:** Module B sertifikaları
-5. **references.ts:** Module B referansları
-6. **services.ts:** Module C hizmetleri
-7. **projects.ts:** Module C projeleri
-
-HER DOSYA:
-- TypeScript types
-- Export const mockData
-- Realistic data (örnek: gerçek şirket isimleri, açıklamalar)
-
-ÖRNEK:
-```typescript
-// lib/data/videos.ts
-import { Video } from '@/types'
-
-export const mockVideos: Video[] = [
-  {
-    id: 1,
-    title: "Module A Tanıtımı",
-    thumbnail: "/assets/thumbnails/module-a.jpg",
-    url: "https://youtube.com/watch?v=...",
-    module: "module-a"
-  },
-  // ... 2 tane daha
-]
-```
-
-ÇIKTI: 7 mock data dosyası.
-```
-
-### 7.2 Mock Data'yı Sayfalarda Kullanma
-
-**GitHub Copilot Prompt:**
-```markdown
-SEN: React ve Next.js uzmanısın.
-
-GÖREV: Sayfalardaki inline mock data'ları `lib/data/` dosyalarından import et.
-
-DEĞİŞTİRİLECEK SAYFALAR:
-- app/page.tsx → import { mockVideos } from '@/lib/data/videos'
-- app/module-a/page.tsx → import { mockCategories } from '@/lib/data/categories'
-- app/module-b/page.tsx → import { mockSolutions, mockCertificates, mockReferences }
-- app/module-c/page.tsx → import { mockServices, mockProjects }
-
-ÇIKTI: Güncellenmiş page.tsx dosyaları.
-```
-
-### 7.3 Manual Testing Checklist
-
-**Test Senaryoları:**
-
-**Landing Page:**
-- [ ] Preloader ilk ziyarette görünüyor
-- [ ] Preloader ikinci ziyarette görünmüyor (localStorage)
-- [ ] Hero section animasyonu çalışıyor
-- [ ] Video showcase kartları tıklanıyor
-- [ ] Kartlara tıklandığında doğru sayfaya gidiyor
-
-**Module A Page:**
-- [ ] Hero section render oluyor
-- [ ] Kategoriler grid olarak görünüyor
-- [ ] Form alanları doldurulabiliyor
-- [ ] Submit butonu disabled (backend henüz yok)
-- [ ] Back button home'a dönüyor
-
-**Module B Page:**
-- [ ] Çözümler, sertifikalar, referanslar görünüyor
-- [ ] Carousel çalışıyor (swipe/click)
-- [ ] Form doldurulabiliyor
-- [ ] Back button çalışıyor
-
-**Module C Page:**
-- [ ] Hizmetler ve projeler görünüyor
-- [ ] Form doldurulabiliyor
-- [ ] Back button çalışıyor
-
-**Responsive:**
-- [ ] Mobile (360px): Tüm sayfalar kullanılabilir
-- [ ] Tablet (768px): Grid layout'lar doğru
-- [ ] Desktop (1920px): İçerik centered, max-width var
-
-**Accessibility:**
-- [ ] Klavye ile navigate edilebiliyor (Tab)
-- [ ] Focus visible (outline var)
-- [ ] Screen reader test (NVDA/VoiceOver)
-
-### 7.4 Performance Test (Lighthouse)
-
-**Hedef Skorlar:**
-- ⚡ Performance: 90+
-- ♿ Accessibility: 95+
-- ✅ Best Practices: 90+
-- 🔍 SEO: 95+
-
-**İyileştirmeler:**
-- [ ] Image optimization: next/image kullan
-- [ ] Font optimization: next/font kullan
-- [ ] Code splitting: Dynamic imports (lazy loading)
-- [ ] Bundle size: Unused dependencies kaldır
-
----
-
-**✅ FAZ 7 TAMAMLANDI!**
-
-Çıktılar:
-- ✅ Mock data dosyaları oluşturuldu
-- ✅ Tüm sayfalar test edildi
-- ✅ Responsive test tamamlandı
-- ✅ Accessibility audit passed
-- ✅ Lighthouse score: 90+
-
----
-
-## 🎉 FRONTEND GELİŞTİRME TAMAMLANDI!
-
-### 📦 Proje Çıktıları:
-
-✅ **Landing Page:** Hero + Video Showcase + Footer  
-✅ **Module A Page:** Kategoriler + Kayıt Formu  
-✅ **Module B Page:** Çözümler + Sertifikalar + Referanslar + Talep Formu  
-✅ **Module C Page:** Hizmetler + Projeler + Teklif Formu  
-✅ **Component Library:** 10+ reusable component  
-✅ **Responsive:** Mobile, tablet, desktop  
-✅ **Accessible:** WCAG 2.1 AA compliant  
-✅ **Animated:** Framer Motion transitions  
-✅ **Mock Data:** 7 veri dosyası (backend için hazır)
-
----
-
-## 📋 SONRAKI ADIMLAR (Backend Entegrasyonu)
-
-**Şimdi Ne Yapmalı?**
-
-1. **Müşteriye Göster:**
-   - Frontend demo (localhost veya Vercel preview)
-   - Mock verilerle tam fonksiyonel
-   - Feedback al, revizyonlar yap
-
-2. **Backend Ekibine Aktar:**
-   - `FRONTEND-DOCS/API-CONTRACT.md` oluştur
-   - Frontend'in beklediği API'leri belirt
-   - Mock data'ları referans göster (backend'in DB'ye ekleyeceği veriler)
-
-3. **Database Şemasını Belirle:**
-   - Mock data'lara bakarak tablo yapılarını tasarla
-   - Frontend'deki form field'larına göre submission tabloları
-
-4. **Entegrasyon Hazırlığı:**
-   - Form'lardaki submit handler'ları hazırla
-   - API fetch fonksiyonları yaz (şimdilik mock return)
-   - Environment variables ekle (.env.local)
-
----
-
-## 🚀 DEPLOYMENT (Opsiyonel - Müşteriye Göstermek İçin)
-
-### Vercel (Hızlı Deploy)
-
-```powershell
-# Vercel CLI kur
-npm i -g vercel
-
-# Deploy
-vercel
-
-# Production deploy
-vercel --prod
-```
-
-**Avantajlar:**
-- 2 dakikada canlı
-- Otomatik HTTPS
-- Preview URL (her commit için)
-
----
-
-## 📚 DOKÜMANTASYON
-
-**Oluşturulması Gereken Dökümanlar:**
-
-1. **API-CONTRACT.md:**
-   ```markdown
-   # API Contract - Frontend → Backend
-   
-   ## POST /api/module-a/register
-   Request:
-   {
-     "fullName": string,
-     "email": string,
-     "phone": string,
-     "categoryId": number,
-     "message": string
-   }
-   
-   Response:
-   {
-     "success": boolean,
-     "message": string,
-     "submissionId": number
-   }
-   ```
-
-2. **COMPONENT-LIBRARY.md:** Component kullanım kılavuzu
-3. **DEPLOYMENT-GUIDE.md:** Deploy adımları
-
----
-
-**🎊 TEBRİKLER! Frontend tamamlandı ve müşteriye gösterilmeye hazır!**
-
-**Toplam Süre:** 1-2 hafta (1 kişi, part-time)  
-**Sonraki Faz:** Backend geliştirme (paralel çalışılabilir)  
-**Proje Durumu:** 🟢 Frontend Complete, 🟡 Backend Pending
+**Görsel Referanslar:**
+- **Preloader Animasyon Referansı:** Bkz. Gereksinim Analizi.pdf Sayfa 2 (Tempergroup.com.au sitesi preloader görseli)
+- **Ana Sayfa Grid Layout Referansı:** Bkz. Gereksinim Analizi.pdf Sayfa 3 (Google FX labs tasarım referansı)
+- **Kart Hover Efektleri Referansı:** Bkz. Gereksinim Analizi.pdf Sayfa 4 (Google FX kartları hover animasyonları)
+- **Mobil Responsive Layout Referansı:** Bkz. Gereksinim Analizi.pdf Sayfa 5 (Sabancı Holdings mobil versiyon referansı)
